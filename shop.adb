@@ -53,7 +53,7 @@ BEGIN
    END LOOP;
 
    LOOP --Wait until done, then finnish.
-      IF Queue_Manager.CustomersWaiting = 0 THEN
+      IF Queue_Manager.Customers_Waiting = 0 THEN
          EXIT;
       ELSE
          DELAY 1.0;
