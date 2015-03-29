@@ -2,12 +2,12 @@ with Ada.Text_Io;
 
 package Customer_Package is
 
-	task type Customer (Priority : Natural := 1) is
-	end Customer;
-
 	type Customer_Type is private;
 
-	procedure Get(Customer_In : out Customer_Type);
+	task type Customer (Id : Integer := 0; Priority : Natural := 1) is
+	end Customer;
+
+	procedure Get(Customer_In : out Customer_Type; Id : in Integer; Prio : in Positive);
 	procedure Put(Customer : in Customer_Type);
 
 	function "<"(RCustomer, LCustomer : Customer_Type) return Boolean;
@@ -15,5 +15,9 @@ package Customer_Package is
 	function "="(RCustomer, LCustomer : Customer_Type) return Boolean;
 
 private
-	type Customer_Type is access Customer;
+	type Customer_Type is record
+		Identify : Integer;
+		Priority : Natural;
+		Customer_Item : access Customer;
+	end record;
 end Customer_Package;

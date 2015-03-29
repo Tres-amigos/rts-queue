@@ -19,11 +19,11 @@ procedure Queue_Manager is
 begin
 
 	for I in 1..3 loop
-        Get(Next_Customer);
+        Get(Next_Customer, I, 10-I);
         Insert(My_List, Next_Customer);
 
         delay Duration(0.5);  -- wait between customers
     end loop;
-    Ada.Text_IO.Put("Klar");
+    Ada.Text_IO.Put_Line("Klar");
     Put(My_List);
 end Queue_Manager;
