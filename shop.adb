@@ -7,7 +7,7 @@ USE Ada.Numerics.Float_Random;
 WITH Ada.Numerics.Discrete_Random;
 WITH Customer_Package;
 USE Customer_Package;
-WITH Queue_Manager;
+WITH Manager_Package; USE Manager_Package;
 
 PROCEDURE Shop IS
    G                   :          Generator;
@@ -16,7 +16,7 @@ PROCEDURE Shop IS
    Interarrival_Time   : CONSTANT           := 2.0;
    Priority_Level      : CONSTANT           := 3;
    Ts                  : CONSTANT           := 0.3;
-   Manager             :          Queue_Manager;
+   MyManager             :          Manager;
 
    TYPE Rand_Range IS RANGE 0 .. Priority_Level;
    PACKAGE Rand_Int IS NEW Ada.Numerics.Discrete_Random(Rand_Range);
@@ -33,6 +33,7 @@ PROCEDURE Shop IS
       Get(New_Customer, ID , Prio);
       --New_Customer
       --Queue_Manager.Add(New_Customer);
+      MyManager := new Queue_Manager;--Queue_Manager;
    END Customer_Enter;
 
 
@@ -52,11 +53,11 @@ BEGIN
       DELAY Duration(Ts*(Random(G) * Interarrival_Time));
    END LOOP;
 
-   LOOP --Wait until done, then finnish.
-      IF Manager.Customers_Waiting = 0 THEN
-         EXIT;
-      ELSE
-         DELAY 1.0;
-      END IF;
-   END LOOP;
+   -- LOOP --Wait until done, then finnish.
+   --    IF Manager.Customers_Waiting = 0 THEN
+   --       EXIT;
+   --    ELSE
+   --       DELAY 1.0;
+   --    END IF;
+   -- END LOOP;
 END Shop;
