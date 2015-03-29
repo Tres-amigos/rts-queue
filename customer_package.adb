@@ -1,33 +1,46 @@
-package body Customer_Package is
+PACKAGE BODY Customer_Package IS
 
-	task body Customer is
-	begin
-		Ada.Text_Io.Put_Line("Task" & Positive'Image(Id) & " with priority" & Natural'Image(Priority)& " started.");
-	end Customer;
+   TASK BODY Customer IS
+   BEGIN
+      Ada.Text_Io.Put_Line("Task" & Positive'Image(Id) & " with priority" & Natural'Image(Priority)& " started.");
+   END Customer;
 
-	procedure Get(Customer_In : out Customer_Type; Id : in Integer; Prio : in Positive) is
-	begin
-		Customer_In := (Identify => Id, Priority => Prio, Customer_Item => new Customer(Id => Id, Priority => Prio));
-	end Get;
+   PROCEDURE Get (
+         Customer_In :    OUT Customer_Type;
+         Id          : IN     Integer;
+         Prio        : IN     Positive) IS
+   BEGIN
+      Customer_In := (Identify => Id, Priority => Prio, Customer_Item => NEW Customer(Id => Id, Priority => Prio));
+   END Get;
 
-	procedure Put(Customer : in Customer_Type) is 
-	begin
-		Ada.Text_Io.Put_Line(Positive'Image(Customer.Priority));
-	end Put;
+   PROCEDURE Put (
+         Customer : IN     Customer_Type) IS
+   BEGIN
+      Ada.Text_Io.Put_Line(Positive'Image(Customer.Priority));
+   END Put;
 
-	function "="(RCustomer, LCustomer : Customer_Type) return Boolean is
-	begin
-		return (RCustomer.Priority = LCustomer.Priority);
-	end "=";
+   FUNCTION "=" (
+         RCustomer,
+         LCustomer : Customer_Type)
+     RETURN Boolean IS
+   BEGIN
+      RETURN (RCustomer.Priority = LCustomer.Priority);
+   END "=";
 
-	function "<"(RCustomer, LCustomer : Customer_Type) return Boolean is
-	begin
-		return (RCustomer.Priority < LCustomer.Priority);
-	end "<";
+   FUNCTION "<" (
+         RCustomer,
+         LCustomer : Customer_Type)
+     RETURN Boolean IS
+   BEGIN
+      RETURN (RCustomer.Priority < LCustomer.Priority);
+   END "<";
 
-	function ">"(RCustomer, LCustomer : Customer_Type) return Boolean is
-	begin
-		return (RCustomer.Priority > LCustomer.Priority);
-	end ">";
+   FUNCTION ">" (
+         RCustomer,
+         LCustomer : Customer_Type)
+     RETURN Boolean IS
+   BEGIN
+      RETURN (RCustomer.Priority > LCustomer.Priority);
+   END ">";
 
-end Customer_Package;
+END Customer_Package;

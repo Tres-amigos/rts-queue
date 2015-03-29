@@ -28,6 +28,7 @@ PROCEDURE Queue_Manager IS
 
    PROCEDURE Add(Customer_In : Customer_Type) IS
    BEGIN
+      Numbers_Of_Customers := Numbers_Of_Customers +1;
       Insert(My_List, Customer_In);
    END Add;
 

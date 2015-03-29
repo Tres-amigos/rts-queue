@@ -16,21 +16,21 @@ PROCEDURE Shop IS
    Interarrival_Time   : CONSTANT           := 2.0;
    Priority_Level      : CONSTANT           := 3;
    Ts                  : CONSTANT           := 0.3;
-   --Manager             :          Queue_Manager;
-   Next_Customer : Customer;
+   Manager             :          Queue_Manager;
 
    TYPE Rand_Range IS RANGE 0 .. Priority_Level;
    PACKAGE Rand_Int IS NEW Ada.Numerics.Discrete_Random(Rand_Range);
    Seed : Rand_Int.Generator;
    Num  : Rand_Range;
 
-   PROCEDURE Customer_Enter IS
+   PROCEDURE Customer_Enter(ID : Integer) IS
       Prio         : Integer;
-      New_Customer : Customer;
+      New_Customer : Customer_Type;
    BEGIN
       Rand_Int.Reset(Seed);
       Prio := Integer(Rand_Int.Random(Seed)); --Set Priority
       Put_Line(Rand_Range'Image(Num));
+      Get(New_Customer, ID , Prio);
       --New_Customer
       --Queue_Manager.Add(New_Customer);
    END Customer_Enter;
@@ -48,12 +48,12 @@ BEGIN
 
 
    FOR I IN 1..Number_Of_Customers LOOP --Create Customers
-      Next_Customer := NEW Customer;
+      Customer_Enter(I);
       DELAY Duration(Ts*(Random(G) * Interarrival_Time));
    END LOOP;
 
    LOOP --Wait until done, then finnish.
-      IF Queue_Manager.Customers_Waiting = 0 THEN
+      IF Manager.Customers_Waiting = 0 THEN
          EXIT;
       ELSE
          DELAY 1.0;
