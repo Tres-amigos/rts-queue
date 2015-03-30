@@ -17,7 +17,7 @@ package Customer_Package is
 private
 	type Customer_Type is record
 		Identify : Integer;
-		Priority : Natural;
+		Priority : Positive;
 		Customer_Item : access Customer;
 	end record;
 end Customer_Package;
