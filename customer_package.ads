@@ -4,7 +4,7 @@ package Customer_Package is
 
 	type Customer_Type is private;
 
-	task type Customer (Id : Integer := 0; Priority : Natural := 1) is
+	task type Customer (Id : Integer := 0; Priority : Positive := 1) is
 	end Customer;
 
 	procedure Get(Customer_In : out Customer_Type; Id : in Integer; Prio : in Positive);

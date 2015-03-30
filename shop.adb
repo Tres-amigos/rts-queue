@@ -18,7 +18,7 @@ PROCEDURE Shop IS
    Ts                  : CONSTANT           := 0.3;
    MyManager             :          Manager;
 
-   TYPE Rand_Range IS RANGE 0 .. Priority_Level;
+   TYPE Rand_Range IS RANGE 1 .. Priority_Level;
    PACKAGE Rand_Int IS NEW Ada.Numerics.Discrete_Random(Rand_Range);
    Seed : Rand_Int.Generator;
    Num  : Rand_Range;
