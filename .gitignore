@@ -3,3 +3,6 @@
 
 # Ada Library Information
 *.ali
+gnat.ago
+server_package.adb.*
+server.package.ads.*
