@@ -16,7 +16,7 @@ PROCEDURE Shop IS
    Interarrival_Time   : CONSTANT           := 2.0;
    Priority_Level      : CONSTANT           := 3;
    Ts                  : CONSTANT           := 0.3;
-   MyManager             :          Manager;
+   MyManager           : Manager            := new Queue_Manager;
 
    SUBTYPE Rand_Range IS Positive RANGE Positive'First .. Priority_Level;
    PACKAGE Rand_Int IS NEW Ada.Numerics.Discrete_Random(Rand_Range);
@@ -32,15 +32,13 @@ PROCEDURE Shop IS
       Put_Line(Rand_Range'Image(Num));
       Get(New_Customer, ID , Prio);
       --New_Customer
-      --Queue_Manager.Add(New_Customer);
-      MyManager := new Queue_Manager;--Queue_Manager;
+      MyManager.Add(New_Customer);
    END Customer_Enter;
 
 
 
 BEGIN
    Reset(G);
-
    FOR I IN 1..Number_Of_Servers LOOP --Create Servers
       --Service_Counter(I).Your_Num_Is(I);
       --Server_Mgr.Free(I);
