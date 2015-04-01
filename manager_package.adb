@@ -23,7 +23,7 @@ package body Manager_Package is
                Insert(My_List, Customer);
             end Add;
          or
-            accept Remove(Customer : out Customer_Type) do
+            accept Remove(Customer : in Customer_Type) do
                Numbers_Of_Customers := Numbers_Of_Customers - 1;
                Remove(My_List, Customer);
             end Remove;
