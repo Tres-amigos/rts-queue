@@ -13,15 +13,23 @@ package body Manager_Package is
       USE Customer_List_Package;
 
       Numbers_Of_Customers : Natural := 0;
-      Next_Customer : Customer_Type;
-      My_List       : List_Type;
+      My_List : List_Type;
 
    BEGIN
-      loop 
-         accept Add(Customer_In : in Customer_Type) do
-            Numbers_Of_Customers := Numbers_Of_Customers +1;
-            Insert(My_List, Customer_In);
-         end Add;
+      loop
+         select
+            accept Add(Customer : in Customer_Type) do
+               Numbers_Of_Customers := Numbers_Of_Customers +1;
+               Insert(My_List, Customer);
+            end Add;
+         or
+            accept Remove(Customer : out Customer_Type) do
+               Numbers_Of_Customers := Numbers_Of_Customers - 1;
+               Remove(My_List, Customer);
+            end Remove;
+         or
+            terminate;
+         end select;
       end loop;
    END Queue_Manager;
 
