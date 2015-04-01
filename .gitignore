@@ -5,4 +5,4 @@
 *.ali
 gnat.ago
 server_package.adb.*
-server.package.ads.*
+server_package.ads.*
