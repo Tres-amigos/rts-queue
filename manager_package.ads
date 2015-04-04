@@ -9,7 +9,7 @@ package Manager_Package is
 	task type Queue_Manager is
 		entry Add(Customer : in Customer_Type);
 		entry Remove(Customer : in Customer_Type);
-		entry Get;
+		entry Get(Customer : out Customer_Type);
 		entry Length(Number : out Integer);
 	end Queue_Manager;
 

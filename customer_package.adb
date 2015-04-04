@@ -16,7 +16,7 @@ PACKAGE BODY Customer_Package IS
    PROCEDURE Put (
          Customer : IN     Customer_Type) IS
    BEGIN
-      Ada.Text_Io.Put_Line(Positive'Image(Customer.Priority));
+      Ada.Text_Io.Put_Line("Customer ID: " & Integer'Image(Customer.Identify) & " Prio: " & Positive'Image(Customer.Priority));
    END Put;
 
    FUNCTION "=" (

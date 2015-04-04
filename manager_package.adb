@@ -23,10 +23,13 @@ package body Manager_Package is
             end Length;
          or
             when Length(My_List) /= 0 =>
-            accept Get do
+            accept Get(Customer : out Customer_Type) do
                Ada.Text_IO.Put_Line("Pop Customer");
                Pop(My_List, My_Customer);
-               Ada.Text_IO.Put_Line("Length after pop: " & Integer'Image(Length(My_List)));
+               Customer := My_Customer;
+               --Ada.Text_IO.Put_Line("Length after pop: " & Integer'Image(Length(My_List)));
+               --Put(My_List);
+               --Ada.Text_IO.Put_Line("-----------------------------");
             end Get;
          or 
             accept Add(Customer : in Customer_Type) do

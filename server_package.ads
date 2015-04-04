@@ -3,6 +3,7 @@ WITH Ada.Numerics.Float_Random;
 USE Ada.Numerics.Float_Random;
 WITH Manager_Package;
 USE Manager_Package;
+with Customer_Package; use Customer_Package;
 
 PACKAGE Server_Package IS
 

@@ -36,6 +36,7 @@ PROCEDURE Shop IS
       Rand_Int.Reset(Seed);
       Prio := Integer(Rand_Int.Random(Seed)); --Set Priority
       Get(New_Customer, ID , Prio);
+      Put(New_Customer);
       MyManager.Add(New_Customer);
    END Customer_Enter;
 

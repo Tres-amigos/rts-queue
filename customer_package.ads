@@ -2,7 +2,7 @@ with Ada.Text_Io;
 
 package Customer_Package is
 
-	type Customer_Type is private;
+	type Customer_Type;
 
 	task type Customer (Id : Integer := 0; Priority : Positive := 1) is
 	end Customer;
@@ -14,7 +14,6 @@ package Customer_Package is
 	function ">"(RCustomer, LCustomer : Customer_Type) return Boolean;
 	function "="(RCustomer, LCustomer : Customer_Type) return Boolean;
 
-private
 	type Customer_Type is record
 		Identify : Integer;
 		Priority : Positive;

@@ -100,8 +100,8 @@ package body Generic_Sorted_List is
    procedure Pop(List : in out List_Type; Item : out Item_Type) is
    begin
       if not Empty(List) then
-         List := List.NextNode;
          Item := List.Item;
+         List := List.NextNode;
       else
          raise ItemNotFound_Error;
       end if;
