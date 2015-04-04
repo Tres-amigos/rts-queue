@@ -1,27 +1,22 @@
 WITH Ada.Text_Io;
 WITH Ada.Numerics.Float_Random;
 USE Ada.Numerics.Float_Random;
-WITH Ada.Calendar;
-USE Ada.Calendar;
+WITH Manager_Package;
+USE Manager_Package;
 
 PACKAGE Server_Package IS
 
-   TYPE Server_Type IS PRIVATE;
    Busy : BOOLEAN  := False;
    Wait : Duration := 3.0;
 
-   TASK TYPE Server(Id : Integer := 0) IS
-      ENTRY Receive_Customer (
-            Customer : IN     Customer_Type);
+   TASK TYPE Server IS
+      entry Start(Id_In : in Integer; MyManager_In : in Manager);
    END Server;
 
-   PROCEDURE Get (
-         Id : IN     Integer);
+   TYPE Server_Type IS ACCESS Server;
 
-PRIVATE
-   TYPE Server_Type IS
-      RECORD
-         Identify    : Integer;
-         Server_Item :          ACCESS Server;
-END RECORD;
+--   PROCEDURE Get (
+--         Server_In :   OUT Server_Type;
+--         Id        : IN     Integer);
+
 END Server_Package;

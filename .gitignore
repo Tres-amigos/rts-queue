@@ -6,3 +6,5 @@
 gnat.ago
 server_package.adb.*
 server_package.ads.*
+b~shop.*
+shop.adb.*
