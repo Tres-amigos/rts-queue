@@ -11,11 +11,12 @@ WITH Server_Package;
 USE Server_Package;
 WITH Manager_Package;
 USE Manager_Package;
+WITH Ada.Exceptions;
 
 PROCEDURE Shop IS
    G                   :          Generator;
    Number_Of_Customers : CONSTANT           := 40;
-   Number_Of_Servers   : CONSTANT           := 7;
+   Number_Of_Servers   : CONSTANT           := 5;
    Interarrival_Time   : CONSTANT           := 2.0;
    Priority_Level      : CONSTANT           := 3;
    Ts                  : CONSTANT           := 0.3;
@@ -34,33 +35,25 @@ PROCEDURE Shop IS
    BEGIN
       Rand_Int.Reset(Seed);
       Prio := Integer(Rand_Int.Random(Seed)); --Set Priority
-      Put_Line(Rand_Range'Image(Num));
       Get(New_Customer, ID , Prio);
-      --New_Customer
       MyManager.Add(New_Customer);
    END Customer_Enter;
 
 BEGIN
    Reset(G);
    FOR I IN 1..Number_Of_Servers LOOP --Create Servers
-      --Service_Counter(I).Your_Num_Is(I);
-      --Server_Mgr.Free(I);
-      Put("Här var det servrar");
       MyServer := NEW Server;
       MyServer.Start(I, MyManager);
    END LOOP;
 
+   Put_Line("Done with Servers");
 
    FOR I IN 1..Number_Of_Customers LOOP --Create Customers
       Customer_Enter(I);
       DELAY Duration(Ts*(Random(G) * Interarrival_Time));
    END LOOP;
 
-   -- LOOP --Wait until done, then finnish.
-   --    IF Manager.Customers_Waiting = 0 THEN
-   --       EXIT;
-   --    ELSE
-   --       DELAY 1.0;
-   --    END IF;
-   -- END LOOP;
+   exception 
+      when Error : others =>
+         Put_Line("exception: " & Ada.Exceptions.Exception_Information(Error));
 END Shop;

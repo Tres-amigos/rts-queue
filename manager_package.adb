@@ -18,17 +18,24 @@ package body Manager_Package is
    BEGIN
       loop
          select
+            accept Length(Number : out Integer) do
+               Number := Length(My_List);
+            end Length;
+         or
+            when Length(My_List) /= 0 =>
+            accept Get do
+               Ada.Text_IO.Put_Line("Pop Customer");
+               Pop(My_List, My_Customer);
+               Ada.Text_IO.Put_Line("Length after pop: " & Integer'Image(Length(My_List)));
+            end Get;
+         or 
             accept Add(Customer : in Customer_Type) do
-                  Insert(My_List, Customer);
+               Insert(My_List, Customer);
             end Add;
          or when Length(My_List) /= 0 =>
             accept Remove(Customer : in Customer_Type) do
                Remove(My_List, Customer);
             end Remove;
-         or when Length(My_List) /= 0 =>
-            accept Get do
-               Pop(My_List, My_Customer);
-            end Get;
          or
             terminate;
          end select;

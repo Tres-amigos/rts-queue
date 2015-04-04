@@ -10,6 +10,7 @@ package Manager_Package is
 		entry Add(Customer : in Customer_Type);
 		entry Remove(Customer : in Customer_Type);
 		entry Get;
+		entry Length(Number : out Integer);
 	end Queue_Manager;
 
 	type Manager is access Queue_Manager;

@@ -6,7 +6,6 @@ USE Manager_Package;
 
 PACKAGE Server_Package IS
 
-   Busy : BOOLEAN  := False;
    Wait : Duration := 3.0;
 
    TASK TYPE Server IS

@@ -2,7 +2,7 @@ PACKAGE BODY Customer_Package IS
 
    TASK BODY Customer IS
    BEGIN
-      Ada.Text_Io.Put_Line("Task" & Positive'Image(Id) & " with priority" & Positive'Image(Priority)& " started.");
+      Ada.Text_Io.Put_Line("Task (Customer)" & Positive'Image(Id) & " with priority" & Positive'Image(Priority)& " started.");
    END Customer;
 
    PROCEDURE Get (
