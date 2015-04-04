@@ -26,6 +26,7 @@ package Generic_Sorted_List is
    function Find(List : List_Type; Item : Key_Type) return Item_Type;
    procedure Find(List : in List_Type; SearchKey : in Key_Type; ReturnItem : out Item_Type);
    function Length(List : List_Type) return Integer;
+   procedure Pop(List : in out List_Type; Item : out Item_Type);
    
    ItemNotFound_Error : exception;
    

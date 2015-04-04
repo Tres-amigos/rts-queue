@@ -14,6 +14,7 @@ package body Manager_Package is
 
       Numbers_Of_Customers : Natural := 0;
       My_List : List_Type;
+      My_Customer : Customer_Type;
 
    BEGIN
       loop
@@ -27,6 +28,11 @@ package body Manager_Package is
                Numbers_Of_Customers := Numbers_Of_Customers - 1;
                Remove(My_List, Customer);
             end Remove;
+         or
+            accept Get do
+               Numbers_Of_Customers := Numbers_Of_Customers - 1;
+               Pop(My_List, My_Customer);
+            end Get;
          or
             terminate;
          end select;
