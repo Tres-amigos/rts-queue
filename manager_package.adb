@@ -12,7 +12,6 @@ package body Manager_Package is
       PACKAGE Customer_List_Package IS NEW Generic_Sorted_List(Customer_Type, Customer_Type, Put, Get_Key, "<", ">", "=");
       USE Customer_List_Package;
 
-      Numbers_Of_Customers : Natural := 0;
       My_List : List_Type;
       My_Customer : Customer_Type;
 
@@ -20,17 +19,14 @@ package body Manager_Package is
       loop
          select
             accept Add(Customer : in Customer_Type) do
-               Numbers_Of_Customers := Numbers_Of_Customers +1;
-               Insert(My_List, Customer);
+                  Insert(My_List, Customer);
             end Add;
-         or
+         or when Length(My_List) /= 0 =>
             accept Remove(Customer : in Customer_Type) do
-               Numbers_Of_Customers := Numbers_Of_Customers - 1;
                Remove(My_List, Customer);
             end Remove;
-         or
+         or when Length(My_List) /= 0 =>
             accept Get do
-               Numbers_Of_Customers := Numbers_Of_Customers - 1;
                Pop(My_List, My_Customer);
             end Get;
          or
